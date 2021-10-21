@@ -16,4 +16,14 @@ public class CabInvoiceCompute {
         double totalFare = distance * Cost_Per_KILOMETER + time * COST_PER_MIN;
         return totalFare;
     }
+    /* method to check the multiple ride data
+     * @param ride data array return fare data
+     */
+    public double calculateCabFare(CabRideData[] rideData){
+        double fare = 0.0;
+        for (CabRideData  cabRideData: rideData){
+            fare += calculateCabFare(cabRideData.getDistance(), cabRideData.getTime());
+        }
+        return fare;
+    }
 }

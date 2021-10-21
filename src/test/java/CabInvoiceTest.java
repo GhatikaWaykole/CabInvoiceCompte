@@ -1,4 +1,5 @@
 import com.example.CabInvoiceCompute;
+import com.example.CabRideData;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,5 +29,18 @@ public class CabInvoiceTest {
         int time = 1;
         double result = cabInvoiceCompute.calculateCabFare(distance,time);
         Assert.assertEquals(5.0,result,0.0);
+    }
+    /* test method to check multi cab ride data
+     * data of total ride compute
+     */
+    @Test
+    public void GivenMultiCabRideData_ShouldReturnFare(){
+        CabRideData[] cab ={
+                new CabRideData(2.0,5),
+                new CabRideData(0.1,1)
+        };
+        double result = cabInvoiceCompute.calculateCabFare(cab);
+
+        Assert.assertEquals(30.0, result,0.0);
     }
 }
