@@ -1,4 +1,8 @@
 package com.example;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /* purpose check the cab invoice fare program
  * use the TDD approach and check the test for the data
  */
@@ -19,11 +23,38 @@ public class CabInvoiceCompute {
     /* method to check the multiple ride data
      * @param ride data array return fare data
      */
-    public CabInvoiceData calculateCabFare(CabRideData[] rideData){
+    public double calculateCabFare(CabRideData[] rideData){
         double fare = 0.0;
         for (CabRideData  cabRideData: rideData){
             fare += calculateCabFare(cabRideData.getDistance(), cabRideData.getTime());
         }
-        return new CabInvoiceData(rideData.length,fare);
+        return fare;
+    }
+    public CabInvoiceData CalculateCabFare(CabRideData[] cabRideData){
+        double fare =0.0;
+        for (CabRideData cabRideData1 : cabRideData){
+            fare += calculateCabFare(cabRideData1.getDistance(),cabRideData1.getTime());
+        }
+        return new CabInvoiceData(cabRideData.length,fare);
+    }
+    public CabInvoiceData CabSummaryCalculate(int userId){
+        Map<Integer,CabRideData[]> map = new HashMap<>();
+        CabRideData[] cabRideData = {
+                new CabRideData(2.0,5),
+                new CabRideData(0.1,1)
+        };
+        CabRideData[] cabRideData1 = {
+                new CabRideData(2.0,5),
+                new CabRideData(0.1,1)
+        };
+        map.put(3,cabRideData);
+        map.put(1,cabRideData1);
+        for (Map.Entry<Integer,CabRideData[]> entry : map.entrySet()){
+            if(userId == entry.getKey()){
+                CabRideData[] data = entry.getValue();
+                return CalculateCabFare(data);
+            }
+        }
+        return null;
     }
 }

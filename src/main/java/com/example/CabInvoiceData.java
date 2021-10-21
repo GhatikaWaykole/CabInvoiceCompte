@@ -3,14 +3,17 @@ package com.example;
 import java.util.Objects;
 
 public class CabInvoiceData {
-    private final int NUMBER_OF_Ride;
-    private final double TOTAL_FARE;
-    private final double AVG_FARE;
+    int NUMBER_OF_Ride;
+    double TOTAL_FARE;
+    double AVG_FARE;
 
     public CabInvoiceData(int NO_OF_Ride, double TOTAL_FARE) {
         this.NUMBER_OF_Ride = NO_OF_Ride;
         this.TOTAL_FARE = TOTAL_FARE;
+    }
+    public CabInvoiceData getInvoiceData(){
         this.AVG_FARE = this.TOTAL_FARE/this.NUMBER_OF_Ride;
+        return this;
     }
     @Override
     public boolean equals(Object o){
