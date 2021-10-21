@@ -61,4 +61,41 @@ public class CabInvoiceTest {
         CabInvoiceData cabInvoiceData1 = new CabInvoiceData(2,30);
         Assert.assertEquals(cabInvoiceData1.getInvoiceData(),cabInvoiceData.getInvoiceData());
     }
+    @Test
+    public void GivenDistaneAndTimePremiumData_ShouldReturnFare(){
+        double distance = 5.0;
+        int time = 12;
+        String type = "premium";
+        double fare = cabinvoiceCompute.calculateFareCompute(distance,time,type);
+        Assert.assertEquals(99,fare,0.0);
+    }
+    @Test
+    public void GivenDistanceAndTimePremiumData_ShouldReturnMinDataDare(){
+        double distance = 1.1;
+        int time = 2;
+        String type = "premium";
+        double fare = cabinvoiceCompute.calculateFareCompute(distance,time,type);
+        Assert.assertEquals(20.5,fare,0.0);
+    }
+    @Test
+    public void GivenDistanceAndTime_ShouldReturnMultiDataFare(){
+        CabRideData[] cabRideData = {
+                new CabRideData(2.0,5),
+                new CabRideData(0.1,1)
+        };
+        String type = "premium";
+        double fare = cabinvoiceCompute.calculateFareCompute(cabRideData,type);
+        Assert.assertEquals(60,fare,0.0);
+    }
+    @Test
+    public void GivenDistanceAndTime_ShouldReturnMultiInvoiceCabDataCompute(){
+        String type = "premium";
+        CabRideData[] cabRideData = {
+                new CabRideData(3.0,4),
+                new CabRideData(1.1,1)
+        };
+        CabInvoiceData cabInvoiceData = cabinvoiceCompute.calculateFareCabDataCompute(cabRideData,type);
+        CabInvoiceData expectedDataCompute = new CabInvoiceData(2,60.0);
+        Assert.assertEquals(expectedDataCompute.getInvoiceData(),cabInvoiceData.getInvoiceData());
+    }
 }
