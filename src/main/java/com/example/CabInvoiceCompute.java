@@ -19,11 +19,11 @@ public class CabInvoiceCompute {
     /* method to check the multiple ride data
      * @param ride data array return fare data
      */
-    public double calculateCabFare(CabRideData[] rideData){
+    public CabInvoiceData calculateCabFare(CabRideData[] rideData){
         double fare = 0.0;
         for (CabRideData  cabRideData: rideData){
             fare += calculateCabFare(cabRideData.getDistance(), cabRideData.getTime());
         }
-        return fare;
+        return new CabInvoiceData(rideData.length,fare);
     }
 }

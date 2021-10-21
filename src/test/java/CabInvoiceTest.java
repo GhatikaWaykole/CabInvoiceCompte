@@ -1,4 +1,5 @@
 import com.example.CabInvoiceCompute;
+import com.example.CabInvoiceData;
 import com.example.CabRideData;
 import org.junit.Assert;
 import org.junit.Before;
@@ -39,8 +40,8 @@ public class CabInvoiceTest {
                 new CabRideData(2.0,5),
                 new CabRideData(0.1,1)
         };
-        double result = cabInvoiceCompute.calculateCabFare(cab);
-
-        Assert.assertEquals(30.0, result,0.0);
+        CabInvoiceData result = cabInvoiceCompute.calculateCabFare(cab);
+        CabInvoiceData expectedData = new CabInvoiceData(2,30.0);
+        Assert.assertEquals(result,expectedData);
     }
 }
